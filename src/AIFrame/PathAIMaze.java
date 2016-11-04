@@ -75,10 +75,11 @@ public class PathAIMaze {
 			switch(i) {
 			case 0:
 				//North 'X'
+				//check if 'X' even exists, if it does then it gets in the if
+				//statement
 		
-				//check if 'X' even exists
 				if(coordLat + 1 <= mazeHeight) {
-					
+		
 				}
 				
 				break;
@@ -86,7 +87,8 @@ public class PathAIMaze {
 				//West 'X'
 				
 				
-				//check if 'X' even exists
+				//check if 'X' even exists, if it does then it gets in the if 
+				//statement
 				if(coordLong - 1 <= mazeWidth) {
 					
 				}
@@ -94,7 +96,8 @@ public class PathAIMaze {
 			case 2:
 				//East 'X'
 				
-				//check if 'X' even exists
+				//check if 'X' even exists, if it does then it gets in the if 
+				//statement
 				if(coordLong + 1 <= mazeWidth) {
 					
 				}
@@ -103,7 +106,8 @@ public class PathAIMaze {
 			case 3:
 				//South 'X'
 				
-				//check if 'X' even exists
+				//check if 'X' even exists, if it does then it gets in the if 
+				//statement
 				if(coordLat - 1 <= mazeHeight) {
 					
 				}
