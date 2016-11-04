@@ -8,7 +8,8 @@ import javax.imageio.*;
 public class ImageReaderAI {
 		static byte[] pixels;
 		static BufferedImage image;
-	public static void main(String args[]) throws IOException{	
+		
+	public ImageReaderAI() throws IOException{	
 		//Get image
 		File file= new File("maze.jpg");
 		BufferedImage image = ImageIO.read(file);
