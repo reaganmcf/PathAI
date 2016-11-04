@@ -12,6 +12,7 @@ public class Main {
 	
 	public void go() throws IOException {
 		ImageReaderAI imgReader = new ImageReaderAI();
+		
 	}
 	
 }
