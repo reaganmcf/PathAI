@@ -3,7 +3,7 @@ package ImageReaderAI;
 import java.awt.image.*;
 import java.io.*;
 import javax.imageio.*;
-
+//This is a comment
 
 public class ImageReaderAI {
 		static byte[] pixels;
