@@ -65,6 +65,7 @@ public class PathAIMaze {
 		int coordLat = currCoord.getLat();
 		int coordLong = currCoord.getLong();
 		
+		int totalOpenSpacesNear = 0;
 		//0 X 0
 		//X C X
 		//0 X 0
@@ -79,7 +80,13 @@ public class PathAIMaze {
 				//statement
 		
 				if(coordLat + 1 <= mazeHeight) {
-		
+					if(mazeCoordinates[coordLat + 1][coordLong].getMazeValue() == 1 ||
+							mazeCoordinates[coordLat + 1][coordLong].getMazeValue() == 2 ||
+							mazeCoordinates[coordLat + 1][coordLong].getMazeValue() == 3) {
+						//if its maze value is 1 (open space) or 2 (start pos) or
+						//3 (end pos), then North 'X' is a valid spot to go to
+						totalOpenSpacesNear++;
+					}
 				}
 				
 				break;

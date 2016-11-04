@@ -1,0 +1,4 @@
+0 -> Wall (blocked off space) 
+1 -> Open Space
+2 -> Start position
+3 -> End Position
