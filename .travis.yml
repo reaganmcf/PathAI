@@ -1,3 +1,9 @@
 language: java
 rvm:
+<<<<<<< HEAD
     - "0.0.2"
+=======
+  - "0.0.2"
+ 
+ 
+>>>>>>> origin/master
