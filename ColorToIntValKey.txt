@@ -1,4 +1,4 @@
-0 -> Wall (blocked off space) 
-1 -> Open Space
-2 -> Start position
-3 -> End Position
+0 = .Wall = Wall of the maze
+1 = .Walkable = Open Space
+2 = .StartingPosition = Start position
+3 = .EndingPosition = End Position

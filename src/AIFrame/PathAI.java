@@ -19,10 +19,13 @@ public class PathAI {
 		this.maze = maze;
 		
 		this.startingPoint = maze.startingPoint;
+		
+		startAI();
 	}
 	
-	public void startAI() {
-		//this is a test
+	private void startAI() {
+		
+		
 	}
 	
 	

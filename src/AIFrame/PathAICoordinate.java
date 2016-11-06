@@ -5,7 +5,7 @@ public class PathAICoordinate {
 	
 	private int latitude = 0;
 	private int longitude = 0;
-	private int mazeValue = 0;
+	private PathAIMazeValue mazeValue;
 	
 	public PathAICoordinate(int latitude, int longitude) {
 		this.latitude = latitude;
@@ -21,11 +21,11 @@ public class PathAICoordinate {
 		return this.longitude;
 	}
 	
-	public int getMazeValue() {
+	public PathAIMazeValue getMazeValue() {
 		return this.mazeValue;
 	}
 	
-	public void setMazeValue(int mazeVal) {
+	public void setMazeValue(PathAIMazeValue mazeVal) {
 		this.mazeValue = mazeVal;
 	}
 }

@@ -1,9 +1,10 @@
 package com.Main;
 
 import java.io.IOException;
-import ImageReaderAI.*;
+import com.reaganmcf.SwiftyJava.*;
+import AIFrame.*;
 
-public class Main {
+public class Main extends SwiftyJava{
 	
 	public static void main(String[] args) throws IOException{
 		Main m = new Main();
@@ -11,8 +12,27 @@ public class Main {
 	}
 	
 	public void go() throws IOException {
-		ImageReaderAI imgReader = new ImageReaderAI();
+		//ImageReaderAI imgReader = new ImageReaderAI();
+		PathAIMaze pathAIMaze = new PathAIMaze(testMaze());
+		PathAI pathAI = new PathAI(pathAIMaze);
 		
+		System.out.println(pathAIMaze.isIntersection(pathAIMaze.endPoint));
+		
+	}
+	
+	public int[][] testMaze() {
+		int[][] arr = {
+			{0,3,0,0,0},
+			{0,1,1,1,0},
+			{0,0,0,1,0},
+			{0,0,0,1,0},
+			{0,0,1,2,0}
+		};
+		
+		//refer to ColorToIntValKey.txt to see which int values represent
+		//which type of value
+		
+		return arr;
 	}
 	
 }
