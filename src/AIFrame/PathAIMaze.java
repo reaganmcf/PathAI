@@ -94,8 +94,9 @@ public class PathAIMaze {
 				if(coordLat - 1 <= mazeHeight - 1 && coordLat - 1 >= 0) {
 					if(mazeCoordinates[coordLat - 1][coordLong].getMazeValue() != PathAIMazeValue.Wall) {
 						//if the mazeValue of the current PathAICoordinate is not .Wall
-						//then register it as an open space
-						System.out.println("North X is an open space");
+						//then register it as an open space AND add the direction of the open space in relation
+						//of the coordinate original coordinate. 
+						mazeCoordinates[coordLat][coordLong].addIntersectionDirection(PathAIDirections.North);
 						totalOpenSpacesNear++;
 					}
 				}
@@ -109,8 +110,10 @@ public class PathAIMaze {
 				if(coordLong - 1 <= mazeWidth - 1 && coordLong - 1 >= 0) {
 					if(mazeCoordinates[coordLat][coordLong - 1].getMazeValue() != PathAIMazeValue.Wall) {
 						//if the mazeValue of the current PathAICoordinate is not .Wall
-						//then register it as an open space
-						System.out.println("West X is an open space");
+						//then register it as an open space AND add the direction of the open space in relation
+						//of the coordinate original coordinate. 
+						
+						mazeCoordinates[coordLat][coordLong].addIntersectionDirection(PathAIDirections.West);
 						totalOpenSpacesNear++;
 					}
 				}
@@ -122,8 +125,10 @@ public class PathAIMaze {
 				if(coordLong + 1 <= mazeWidth - 1) {
 					if(mazeCoordinates[coordLat][coordLong + 1].getMazeValue() != PathAIMazeValue.Wall) {
 						//if the mazeValue of the current PathAICoordinate is not .Wall
-						//then register it as an open space
-						System.out.println("East X is an open space");
+						//then register it as an open space AND add the direction of the open space in relation
+						//of the coordinate original coordinate. 
+
+						mazeCoordinates[coordLat][coordLong].addIntersectionDirection(PathAIDirections.East);
 						totalOpenSpacesNear++;
 					}
 				}
@@ -137,8 +142,10 @@ public class PathAIMaze {
 				if(coordLat + 1 <= mazeHeight - 1) {
 					if(mazeCoordinates[coordLat + 1][coordLong].getMazeValue() != PathAIMazeValue.Wall) {
 						//if the mazeValue of the current PathAICoordinate is not .Wall
-						//then register it as an open space
-						System.out.println("South X is an open space");
+						//then register it as an open space AND add the direction of the open space in relation
+						//of the coordinate original coordinate. 
+						
+						mazeCoordinates[coordLat][coordLong].addIntersectionDirection(PathAIDirections.South);
 						totalOpenSpacesNear++;
 					}
 				}

@@ -12,7 +12,10 @@ public class PathAI {
 	PathAICoordinate endPoint;
 	PathAICoordinate lastIntersection;
 	
-	PathAICoordinate[] fastestPath;
+	//this is used to store all of the paths that the AI found. The fastest path will be the 
+	//array of coordinates that is the smallest in size (the smallest moves made).
+	PathAICoordinate[][] successfulPaths;
+	
 	
 	public PathAI(PathAIMaze maze) {
 		//set maze object here so we can reference it
@@ -24,7 +27,6 @@ public class PathAI {
 	}
 	
 	private void startAI() {
-		
 		
 		
 	}
