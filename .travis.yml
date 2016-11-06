@@ -1,1 +1,5 @@
 language: java
+rvm:
+  - "0.0.2"
+ 
+ 
