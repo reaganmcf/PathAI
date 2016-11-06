@@ -623,6 +623,32 @@ public class SwiftyJava {
 		
 	}
 	
+	public void frog(int i) {
+		frog(String(i));
+	}
 	
+	public void frog(char i) {
+		frog(String(i));
+	}
+	
+	public void frog(boolean i) {
+		frog(String(i));
+	}
+	
+	public void frog(long i) {
+		frog(String(i));
+	}
+	
+	public void frog(short i) {
+		frog(String(i));
+	}
+	
+	public void frog(float i) {
+		frog(String(i));
+	}
+	
+	public void frog(double i) {
+		frog(String(i));
+	}
 	
 }

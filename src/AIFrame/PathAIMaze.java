@@ -19,9 +19,19 @@ public class PathAIMaze {
 		
 	public PathAIMaze(int[][] arr) {
 		
+		//check to make sure 'arr' is square by dimensions
+		for(int k = 0; k < arr.length; k++) {
+			if(arr[k].length != arr.length) {
+				//this means that at least one of the rows in the array is not the same
+				//length as the width of the array; meaning the array is not square
+				throw new RuntimeException("[PathAI] - Maze | ArrayNotSquareInSize - The array that was passed in to make a PathAIMaze object is not square in dimensions");
+			}
+		}
+		
 		mazeCoordinates = new PathAICoordinate[arr[0].length][arr[0].length];
 		mazeHeight = arr[0].length;
 		mazeWidth = mazeHeight;
+		
 		
 		for(int i = 0; i < arr[0].length; i++) {
 			for(int j = 0; j < arr[i].length; j++) {

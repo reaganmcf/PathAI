@@ -16,7 +16,7 @@ public class Main extends SwiftyJava{
 		PathAIMaze pathAIMaze = new PathAIMaze(testMaze());
 		PathAI pathAI = new PathAI(pathAIMaze);
 		
-		System.out.println(pathAIMaze.isIntersection(pathAIMaze.endPoint));
+		frog(pathAIMaze.isIntersection(pathAIMaze.endPoint));
 		
 	}
 	
