@@ -3,6 +3,7 @@ package com.Main;
 import java.io.IOException;
 import com.reaganmcf.SwiftyJava.*;
 import AIFrame.*;
+import ImageReaderAI.ImageReaderAI;
 
 public class Main extends SwiftyJava{
 	
@@ -12,7 +13,7 @@ public class Main extends SwiftyJava{
 	}
 	
 	public void go() throws IOException {
-		//ImageReaderAI imgReader = new ImageReaderAI();
+		ImageReaderAI imgReader = new ImageReaderAI();
 		PathAIMaze pathAIMaze = new PathAIMaze(testMaze());
 		PathAI pathAI = new PathAI(pathAIMaze);
 
@@ -21,6 +22,7 @@ public class Main extends SwiftyJava{
 		//System.out.println(pathAIMaze.startingPoint.getIntersectionDirections());
 		
 		print(pathAIMaze.getCoordinateFromDirection(pathAIMaze.startingPoint, PathAIDirections.West).getMazeValue());
+		
 		
 	}
 	
