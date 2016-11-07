@@ -1,9 +1,10 @@
 package AIFrame;
 
 
-public class PathAI {
+public class PathAI{
 	
 	PathAIMaze maze;
+	
 	
 	//Used to reference the current point in the maze, starting point
 	//and the ending point
@@ -23,12 +24,24 @@ public class PathAI {
 		
 		this.startingPoint = maze.startingPoint;
 		
-		startAI();
+		//startAI();
 	}
 	
 	private void startAI() {
+		boolean isRunning = true;
+		while(isRunning) {
+			
+			//if there is no current point to be on (meaning this is the first recursion) then set
+			//the current point to the maze's starting position
+			if(currentPoint == null) {
+				currentPoint = startingPoint;
+			}
+			
+			
+			
+		}
 		
-		//test
+		
 	}
 	
 	

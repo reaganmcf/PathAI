@@ -68,6 +68,25 @@ public class PathAIMaze {
 	}
 	
 	
+	public PathAICoordinate getCoordinateFromDirection(PathAICoordinate currCoord, PathAIDirections dir) {
+		
+		switch(dir) {
+		case North:
+			return mazeCoordinates[currCoord.getLat() - 1][currCoord.getLong()];
+		case South:
+			return mazeCoordinates[currCoord.getLat() + 1][currCoord.getLong()];
+		case West:
+			return mazeCoordinates[currCoord.getLat()][currCoord.getLong() - 1];
+		case East:
+			return mazeCoordinates[currCoord.getLat()][currCoord.getLong() + 1];
+		default:
+			//this has to be hear because java will show an error saying that there is no return statment
+			return null;
+		}
+		
+		
+	}
+	
 	public boolean isIntersection(PathAICoordinate currCoord) {
 		
 		//set the coord's lat and long to local variables so its easier to read
@@ -77,7 +96,7 @@ public class PathAIMaze {
 		
 		int totalOpenSpacesNear = 0;
 		//0 X 0
-		//X C X
+		//X C X		
 		//0 X 0
 		//our current position is 'C', and we are trying to see if there are atleast 2 'X' points
 		//next to it. If there are, return true; else, return false

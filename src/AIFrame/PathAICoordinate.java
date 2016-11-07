@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 public class PathAICoordinate { 
 	
+	//latitude is for y 
+	//longitude is for x
 	private int latitude = 0;
 	private int longitude = 0;
+	
 	private PathAIMazeValue mazeValue;
 	
 	//this is used to store the direction of the open spaces are in relation to the current
