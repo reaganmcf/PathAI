@@ -18,47 +18,33 @@ public class ImageReaderAI extends SwiftyJava{
 		image = ImageIO.read(file);
 
 		//Loops through each pixel in image
-		System.out.println(image.getHeight());
-		System.out.println(image.getWidth());
-		int width = image.getWidth();
-		int height = image.getHeight();
+		int side = image.getHeight();
 		
-		mazeValue = new int[width][height];
+		mazeValue = new int[side][side];
 		
-		for(int x=0; x<width; x++){
-			for(int y=0; y<height; y++){
-				getRedGreenBlue(x, y, width, height);
+		for(int x=0; x<side; x++){
+			for(int y=0; y<side; y++){
+				getRedGreenBlue(x, y, side);
 			}
 		}
 		
-		for(int x=0; x<width; x++){
-			for(int y=0; x==height; y+=height){
-				if(mazeValue[x][y] == 1){
-					if(hasStart == false){
-						hasStart = true;
-						mazeValue[x][y] = 2;
-					}else{
-						mazeValue[x][y] = 3;
+		for(int x=0; x<side; x++){
+			for(int y=0; y<side; y++){
+				if(mazeValue[x][y]==1){
+					if((x == 0) || (y == 0) || (x == side-1) || (y == side-1)){
+						if(hasStart == false){
+							hasStart = true;
+							mazeValue[x][y] = 2;
+						}else{
+							mazeValue[x][y] = 3;
+						}	
 					}
 				}
 			}
 		}
 		
-		for(int y=0; y<width; y++){
-			for(int x=0; x==width; x+=width){
-				if(mazeValue[x][y] == 1){
-					if(hasStart == false){
-						hasStart = true;
-						mazeValue[x][y] = 2;
-					}else{
-						mazeValue[x][y] = 3;
-					}
-				}
-			}
-		}
-		
-		for(int x=0; x<width; x++){
-			for(int y=0; y<height; y++){
+		for(int x=0; x<side; x++){
+			for(int y=0; y<side; y++){
 				System.out.print(mazeValue[x][y]);
 			}
 			print("");
@@ -66,10 +52,10 @@ public class ImageReaderAI extends SwiftyJava{
 		
 	}
 
-    public void getRedGreenBlue(int x, int y, int width, int height)
+    public void getRedGreenBlue(int x, int y, int side)
     {
     	  // Getting pixel color by position x and y 
-    	Color color = new Color(image.getRGB(x,y), true); 
+    	Color color = new Color(image.getRGB(side - x - 1,side - y - 1), true); 
     	  int  red   = color.getRed();
     	  int  green = color.getGreen();
     	  int  blue  =  color.getBlue();
