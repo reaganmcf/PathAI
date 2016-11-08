@@ -16,12 +16,13 @@ public class Main extends SwiftyJava{
 		ImageReaderAI imgReader = new ImageReaderAI();
 		PathAIMaze pathAIMaze = new PathAIMaze(testMaze());
 		PathAI pathAI = new PathAI(pathAIMaze);
-
 		
-		//frog(pathAIMaze.isIntersection(pathAIMaze.startingPoint));
+		print(pathAI.maze.startingPoint.getIntersectionDirections());
+		
+		//frog(pathAI.startingPoint.isIntersection(pathAIMaze.startingPoint));
 		//System.out.println(pathAIMaze.startingPoint.getIntersectionDirections());
 		
-		print(pathAIMaze.getCoordinateFromDirection(pathAIMaze.startingPoint, PathAIDirections.West).getMazeValue());
+		//print(pathAIMaze.getCoordinateFromDirection(pathAIMaze.startingPoint, PathAIDirections.West).getMazeValue());
 		
 		
 	}

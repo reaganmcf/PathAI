@@ -36,6 +36,7 @@ public class PathAIMaze {
 		for(int i = 0; i < arr[0].length; i++) {
 			for(int j = 0; j < arr[i].length; j++) {
 				mazeCoordinates[i][j] = new PathAICoordinate(i,j);
+			
 				
 				switch(arr[i][j]) {
 				case 0:
@@ -63,6 +64,18 @@ public class PathAIMaze {
 					endPoint = mazeCoordinates[i][j];
 				}
 				
+			}
+		}
+		
+		//it needs to loop through all of the coordinates again
+		//AFTER all of the coordinates have been placed inside the array
+		//to check if they are a valid intersection and add the valid 
+		//intersection directions to their corresponding arrays
+		for(int k = 0; k < arr[0].length; k++) {
+			for(int l = 0; l < arr[0].length; l++) {
+				//run this here since isIntersection sets the coordinates
+				//intersection directions and 
+				this.isIntersection(mazeCoordinates[k][l]);
 			}
 		}
 	}

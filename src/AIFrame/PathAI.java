@@ -1,21 +1,26 @@
 package AIFrame;
 
+import java.util.ArrayList;
 
-public class PathAI{
+import com.reaganmcf.SwiftyJava.SwiftyJava;
+
+public class PathAI extends SwiftyJava {
 	
-	PathAIMaze maze;
-	
+	public PathAIMaze maze;
 	
 	//Used to reference the current point in the maze, starting point
 	//and the ending point
 	PathAICoordinate startingPoint;
 	PathAICoordinate currentPoint;
 	PathAICoordinate endPoint;
-	PathAICoordinate lastIntersection;
 	
 	//this is used to store all of the paths that the AI found. The fastest path will be the 
 	//array of coordinates that is the smallest in size (the smallest moves made).
 	PathAICoordinate[][] successfulPaths;
+	
+	//the way we keep track of the intersections run into by using a 
+	//"Stack" method; First one it - last one out
+	ArrayList<PathAICoordinate> intersectionStack = new ArrayList<PathAICoordinate>();
 	
 	
 	public PathAI(PathAIMaze maze) {
@@ -23,22 +28,29 @@ public class PathAI{
 		this.maze = maze;
 		
 		this.startingPoint = maze.startingPoint;
+		this.endPoint = maze.endPoint;
 		
-		//startAI();
+		startAI();
 	}
 	
 	private void startAI() {
-		boolean isRunning = true;
-		while(isRunning) {
+	
+		while(currentPoint == null && intersectionStack.size() > 0) {
 			
-			//if there is no current point to be on (meaning this is the first recursion) then set
-			//the current point to the maze's starting position
+			//if there is no current point (meaning also
+			//if this is the first recursion of the array) then
+			//set the current point to starting point
 			if(currentPoint == null) {
 				currentPoint = startingPoint;
+				
+				//check to see if currPoint is an intersection
+				if(maze.isIntersection(currentPoint)) {
+					intersectionStack.add(currentPoint);
+				}
 			}
 			
 			
-			
+		
 		}
 		
 		
