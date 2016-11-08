@@ -20,7 +20,10 @@ public class PathAI extends SwiftyJava {
 	
 	//the way we keep track of the intersections run into by using a 
 	//"Stack" method; First one it - last one out
-	ArrayList<PathAICoordinate> intersectionStack = new ArrayList<PathAICoordinate>();
+	//It stores PathAIPair, which is a custom object that stores a
+	//Coordinate and it's PathAIDirections ArrayList that can be used
+	//eff. in the stack
+	ArrayList<PathAIPair> intersectionStack = new ArrayList<PathAIPair>();
 	
 	
 	public PathAI(PathAIMaze maze) {
@@ -43,13 +46,13 @@ public class PathAI extends SwiftyJava {
 			if(currentPoint == null) {
 				currentPoint = startingPoint;
 				
-				//check to see if currPoint is an intersection
+				//check to see if currPoint is anz	 intersection
 				if(maze.isIntersection(currentPoint)) {
-					intersectionStack.add(currentPoint);
+					intersectionStack.add(new PathAIPair(startingPoint, startingPoint.getIntersectionDirections()));
 				}
 			}
 			
-			
+			print(intersectionStack.remove(intersectionStack.size()));
 		
 		}
 		
