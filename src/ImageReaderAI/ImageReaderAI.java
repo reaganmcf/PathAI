@@ -27,7 +27,7 @@ public class ImageReaderAI extends SwiftyJava{
 				getRedGreenBlue(x, y, side);
 			}
 		}
-		
+		//finding the beginning and end of the maze
 		for(int x=0; x<side; x++){
 			for(int y=0; y<side; y++){
 				if(mazeValue[x][y]==1){
@@ -42,27 +42,21 @@ public class ImageReaderAI extends SwiftyJava{
 				}
 			}
 		}
-		
-		for(int x=0; x<side; x++){
-			for(int y=0; y<side; y++){
-				System.out.print(mazeValue[x][y]);
-			}
-			print("");
-		}
-		
+		//mazeValue int is the multidimensional array
 	}
 
     public void getRedGreenBlue(int x, int y, int side)
     {
     	  // Getting pixel color by position x and y 
-    	Color color = new Color(image.getRGB(side - x - 1,side - y - 1), true); 
+    	Color color = new Color(image.getRGB(x,y), true); 
     	  int  red   = color.getRed();
     	  int  green = color.getGreen();
     	  int  blue  =  color.getBlue();
+    	  //This works for some reason
     	  if(red  > 240 && blue > 240 && green > 240){
-    		  mazeValue[x][y] = 1;
+    		  mazeValue[y][x] = 1;
     	  } else{
-    		  mazeValue[x][y] = 0;
+    		  mazeValue[y][x] = 0;
     	  }
     	  
     		  
