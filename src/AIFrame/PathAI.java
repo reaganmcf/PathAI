@@ -33,30 +33,49 @@ public class PathAI extends SwiftyJava {
 		this.startingPoint = maze.startingPoint;
 		this.endPoint = maze.endPoint;
 		
-		startAI();
+		PathAIPair test = new PathAIPair(startingPoint, startingPoint.getIntersectionDirections());
+		cycle(test.getDirections().get(1));
+		
+		//startAI();
 	}
 	
 	private void startAI() {
 	
-		while(currentPoint == null && intersectionStack.size() > 0) {
-			
-			//if there is no current point (meaning also
-			//if this is the first recursion of the array) then
-			//set the current point to starting point
-			if(currentPoint == null) {
-				currentPoint = startingPoint;
-				
-				//check to see if currPoint is anz	 intersection
-				if(maze.isIntersection(currentPoint)) {
-					intersectionStack.add(new PathAIPair(startingPoint, startingPoint.getIntersectionDirections()));
-				}
-			}
-			
-			print(intersectionStack.remove(intersectionStack.size()));
-		
+		if(currentPoint == null) {
+			currentPoint = startingPoint;
 		}
 		
+		boolean isRunning = true;
+		while(isRunning) {
+			//add the current point to the stack
+			intersectionStack.add(new PathAIPair(currentPoint, currentPoint.getIntersectionDirections()));
+			
+			if(this.maze.isIntersection(getTopMostStackItem().getCoordinate()) == true || this.currentPoint == this.startingPoint) {
+				for(int i = 0; i < getTopMostStackItem().getDirections().size() - 1; i++) {
+					this.cycle(this.getTopMostStackItem().getDirections().get(i));
+				}
+			}
+		}
 		
+
+	}
+	
+	public void cycle(Object obj) {
+		if(obj == PathAIDirections.North) {
+			frog("isNorth");
+		}else if(obj == PathAIDirections.East) {
+			frog("isEast");
+		}else if(obj == PathAIDirections.South) {
+			frog("isSouth");
+		}else if(obj == PathAIDirections.West) {
+			frog("isWest");
+		}
+		
+	}
+	
+	//helper method
+	public PathAIPair getTopMostStackItem() {
+		return this.intersectionStack.get(this.intersectionStack.size() - 1);
 	}
 	
 	
