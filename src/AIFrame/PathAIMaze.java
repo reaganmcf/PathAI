@@ -186,7 +186,8 @@ public class PathAIMaze {
 			
 		}
 		
-		return (totalOpenSpacesNear >= 2);
+		//to be an intersection, there needs to be at least 3 possible points to go to.
+		return (totalOpenSpacesNear >= 3);
 
 	}
 	

@@ -17,7 +17,6 @@ public class Main extends SwiftyJava{
 		PathAIMaze pathAIMaze = new PathAIMaze(testMaze());
 		PathAI pathAI = new PathAI(pathAIMaze);
 		
-		print(pathAI.maze.startingPoint.getIntersectionDirections());
 		
 		//frog(pathAI.startingPoint.isIntersection(pathAIMaze.startingPoint));
 		//System.out.println(pathAIMaze.startingPoint.getIntersectionDirections());
@@ -29,11 +28,11 @@ public class Main extends SwiftyJava{
 	
 	public int[][] testMaze() {
 		int[][] arr = {
-			{0,3,0,0,0},
-			{0,1,1,1,0},
-			{0,0,0,1,0},
-			{0,0,0,1,0},
-			{0,0,1,2,0}
+			{0,3,0,1,0},
+			{0,1,0,1,0},
+			{0,1,0,1,0},
+			{0,1,0,0,0},
+			{0,1,1,2,0}
 		};
 		
 		//refer to ColorToIntValKey.txt to see which int values represent

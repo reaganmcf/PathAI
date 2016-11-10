@@ -22,6 +22,10 @@ public class PathAIPair {
 		return this.dirs;
 	}
 	
+	public PathAIDirections[] getDirectionsAsNonDynamicArray() {
+			return dirs.toArray(new PathAIDirections[dirs.size()]);
+	}
+	
 	public PathAICoordinate getCoordinate() {
 		return this.coordinate;
 	}
