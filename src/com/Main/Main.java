@@ -28,11 +28,11 @@ public class Main extends SwiftyJava{
 	
 	public int[][] testMaze() {
 		int[][] arr = {
-			{0,3,0,1,0},
-			{0,1,0,1,0},
-			{0,1,0,1,0},
-			{0,1,0,0,0},
-			{0,1,1,2,0}
+			{3,1,1,1,1},
+			{1,0,1,0,1},
+			{1,1,1,0,1},
+			{0,0,1,0,1},
+			{0,0,1,2,1}
 		};
 		
 		//refer to ColorToIntValKey.txt to see which int values represent

@@ -100,7 +100,7 @@ public class PathAIMaze {
 		
 	}
 	
-	public boolean isIntersection(PathAICoordinate currCoord) {
+	private boolean isIntersection(PathAICoordinate currCoord) {
 		
 		//set the coord's lat and long to local variables so its easier to read
 		//and understand this code
@@ -189,6 +189,12 @@ public class PathAIMaze {
 		//to be an intersection, there needs to be at least 3 possible points to go to.
 		return (totalOpenSpacesNear >= 3);
 
+	}
+	
+	public void updateCoordinateMazeValue(PathAICoordinate coord, PathAIMazeValue newVal) {
+		coord.setMazeValue(newVal);
+		
+		
 	}
 	
 	
