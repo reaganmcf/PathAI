@@ -1,7 +1,5 @@
 package AIFrame;
 
-import java.awt.Image;
-
 public class PathAIMaze {
 	
 	int mazeHeight = 0;
@@ -13,11 +11,19 @@ public class PathAIMaze {
 	public PathAICoordinate endPoint;
 	
 	//Data Type to store the maze
-	public PathAIMaze(Image img) {
-		
+	
+	//this class is a singleton so there can only be one instance of this class
+	//the below stuff is to make sure the class is a singleton
+	private static PathAIMaze maze = new PathAIMaze( );
+	
+	private PathAIMaze() { }
+	
+	public static PathAIMaze getInstance() {
+		return maze;
 	}
-		
-	public PathAIMaze(int[][] arr) {
+	
+	
+	public void setMaze(int[][] arr) {
 		
 		//check to make sure 'arr' is square by dimensions
 		for(int k = 0; k < arr.length; k++) {

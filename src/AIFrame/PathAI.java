@@ -114,18 +114,18 @@ public class PathAI extends SwiftyJava {
 					print("Dir passed in : " + dir.toString());
 					
 					PathAICoordinate temp = this.maze.getCoordinateFromDirection(currentPoint.getCoordinate(), dir);
-					ArrayList<PathAIPair> currSplitInstance = split(new PathAIPair(temp, temp.getIntersectionDirections()), dir);
+					PathAISplit currSplitInstance = new PathAISplit(new PathAIPair(temp, temp.getIntersectionDirections()), dir, endPoint);
 					
-					printArrayList(currSplitInstance);
+					printArrayArrayList(currSplitInstance.getAllSuccessfulPaths());
 					print("---------");
 					
 					//if the instance reached the end of the maze, create a new PathAISuccessfulPath, and 
 					//add it to the successfulPaths ArrayList
-					if(currSplitInstance.get(currSplitInstance.size() - 1).getCoordinate() == endPoint) {
+					for(int i = 0; i < currSplitInstance.getAllSuccessfulPaths().size(); i++) {
 						ArrayList<PathAIPair> tempSuccessPath = new ArrayList<PathAIPair>();
 						tempSuccessPath.addAll(startPointToFirstIntersection);
 						tempSuccessPath.add(currentPoint);
-						tempSuccessPath.addAll(currSplitInstance);
+						tempSuccessPath.addAll(currSplitInstance.getAllSuccessfulPaths().get(i));
 						
 						this.successfulPaths.add(new PathAISuccessfulPath("Path_" + (successfulPaths.size() + 1), tempSuccessPath));
 					}
@@ -222,6 +222,17 @@ public class PathAI extends SwiftyJava {
 			temp += "(" + arr.get(i).getCoordinate().getLat() + "," + arr.get(i).getCoordinate().getLong() + ")";
 		}
 		
+		print(temp);
+	}
+	
+	public void printArrayArrayList(ArrayList<ArrayList<PathAIPair>> arr) {
+		String temp = "";
+		for(int i = 0; i < arr.size(); i++) {
+			for(int j = 0; j < arr.get(i).size(); j++) {
+				temp += "(" + arr.get(i).get(j).getCoordinate().getLat() + "," + arr.get(i).get(j).getCoordinate().getLong() + ")";
+			}
+			temp += "\n ------ \n";
+		}
 		print(temp);
 	}
 	

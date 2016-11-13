@@ -7,6 +7,7 @@ import ImageReaderAI.ImageReaderAI;
 
 public class Main extends SwiftyJava{
 	
+	
 	public static void main(String[] args) throws IOException{
 		Main m = new Main();
 		m.go();
@@ -14,8 +15,9 @@ public class Main extends SwiftyJava{
 	
 	public void go() throws IOException {
 		ImageReaderAI imgReader = new ImageReaderAI();
-		PathAIMaze pathAIMaze = new PathAIMaze(testMaze());
-		PathAI pathAI = new PathAI(pathAIMaze);
+		PathAIMaze maze = PathAIMaze.getInstance( );
+		maze.setMaze(testMaze());
+		PathAI pathAI = new PathAI(maze);
 		
 		
 		//frog(pathAI.startingPoint.isIntersection(pathAIMaze.startingPoint));
@@ -28,11 +30,11 @@ public class Main extends SwiftyJava{
 	
 	public int[][] testMaze() {
 		int[][] arr = {
-			{3,1,1,1,1},
-			{1,0,1,0,1},
-			{1,1,1,0,1},
-			{0,0,1,0,1},
-			{0,0,1,2,1}
+			{3,1,1,0,0},
+			{0,0,1,0,0},
+			{0,0,1,0,0},
+			{0,0,1,0,0},
+			{0,0,1,2,0}
 		};
 		
 		//refer to ColorToIntValKey.txt to see which int values represent
