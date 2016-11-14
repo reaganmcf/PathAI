@@ -1,6 +1,9 @@
 package AIFrame;
 
+import java.util.ArrayList;
+
 public class PathAIMaze {
+	
 	
 	int mazeHeight = 0;
 	int mazeWidth = 0;
@@ -10,7 +13,8 @@ public class PathAIMaze {
 	public PathAICoordinate startingPoint;
 	public PathAICoordinate endPoint;
 	
-	//Data Type to store the maze
+	//Used to make sure we don't go to a point we have already been too
+	public ArrayList<PathAIPair> pointsAlreadyReached = new ArrayList<PathAIPair>();
 	
 	//this class is a singleton so there can only be one instance of this class
 	//the below stuff is to make sure the class is a singleton

@@ -61,6 +61,9 @@ public class PathAI extends SwiftyJava {
 		boolean isRunning = true;
 		while(isRunning) {
 			
+			//tell maze we have reached currPoint
+			maze.pointsAlreadyReached.add(currentPoint);
+			
 			if(currentPoint.getDirections().size() <= 2) {
 			//if the point has only 1 other space to go, then it goes into this if
 				
@@ -109,15 +112,18 @@ public class PathAI extends SwiftyJava {
 				
 				//split for each direction
 				for(PathAIDirections dir :	currentPoint.getDirectionsAsNonDynamicArray()) {
-					//temp to make code readable
-					
+					//DEBUG
 					print("Dir passed in : " + dir.toString());
+					//DEBUG
 					
+					//create a new PathAISplit instance (and temp to make code easier to read)
 					PathAICoordinate temp = this.maze.getCoordinateFromDirection(currentPoint.getCoordinate(), dir);
 					PathAISplit currSplitInstance = new PathAISplit(new PathAIPair(temp, temp.getIntersectionDirections()), dir, endPoint);
 					
+					//DEBUG
 					printArrayArrayList(currSplitInstance.getAllSuccessfulPaths());
 					print("---------");
+					//DEBUG
 					
 					//if the instance reached the end of the maze, create a new PathAISuccessfulPath, and 
 					//add it to the successfulPaths ArrayList
@@ -133,64 +139,6 @@ public class PathAI extends SwiftyJava {
 				isRunning = false;
 			}
 		}
-	}
-	
-	public ArrayList<PathAIPair> split(PathAIPair pair, PathAIDirections movementDir) {
-		//whenever we reach an intersection in the maze, we want to split a new track
-		//for each intersection direction besides the one where it just came from
-		
-		//we create new variables for currPoint, startingPathToFirstIntersection, and lastMovement
-		//Direction because we don't want to mess with the other ones
-		PathAIPair currPoint = pair;
-		ArrayList<PathAIPair> currPath = new ArrayList<PathAIPair>();
-		PathAIDirections lastDir = movementDir;
-		
-		//used to check if it reached the endPoint
-		boolean didReachEnd = false;
-		
-		while(currPoint.getDirections().size() <= 2) {
-			if(currPoint.getCoordinate() != endPoint && currPoint.getDirections().size() > 1) {
-				//make sure to delete the direction that we just came from
-				
-				currPoint.deleteDirection(this.getOppositeDirection(lastDir));
-				
-				//make temp variables so the code is easier to read
-				PathAIDirections[] temp1 = currPoint.getDirectionsAsNonDynamicArray();
-				PathAICoordinate temp = this.maze.getCoordinateFromDirection(currPoint.getCoordinate(), temp1[0]);
-				
-				print("currently moving to :" + lastDir.toString());
-				//update lastDir, and add currPoint to currPath;
-				lastDir = temp1[0];
-				currPath.add(currPoint);
-				
-				//update currentPoint
-				currPoint = new PathAIPair(temp, temp.getIntersectionDirections());
-			
-			}else if(currPoint.getCoordinate() != endPoint) {
-				//it  reaches here if it is a dead end point
-				break;
-			}else if(currPoint.getCoordinate() == endPoint){
-				//if it gets here, then that means that currPoint is endPoint, so we want to
-				//add endPoint to the array and break 
-				currPath.add(new PathAIPair(endPoint, endPoint.getIntersectionDirections()));
-				didReachEnd = true;
-				break;
-			}
-		}
-		
-		//currPoint = currPath.get(currPath.size() - 1);
-		if(!didReachEnd) {
-			print(currPoint.getCoordinate().getLat() + "," + currPoint.getCoordinate().getLong());
-			//check to see if the reason it didn't end is because it hit another intersection
-			if(currPoint.getDirections().size() > 2) {
-				print("reached an intersection");
-			}else{
-				print("reached dead end");
-			}
-			
-		}
-		//we return the arraylist here, it will contain endPoint if it reached there
-		return currPath;
 	}
 	
 	//used to get the opposite of a direction passed in 

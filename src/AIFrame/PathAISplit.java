@@ -31,6 +31,13 @@ public class PathAISplit extends SwiftyJava{
 		
 		
 		while(currPoint.getDirections().size() <= 2) {
+			
+			//tell maze we have reached currPoint
+			if(!maze.pointsAlreadyReached.contains(currPoint)) {
+				maze.pointsAlreadyReached.add(currPoint);
+			}
+			printArrayList(maze.pointsAlreadyReached);
+			
 			if(currPoint.getCoordinate() != endPoint && currPoint.getDirections().size() > 1) {
 				//make sure to delete the direction that we just came from
 				
@@ -40,7 +47,7 @@ public class PathAISplit extends SwiftyJava{
 				PathAIDirections[] temp1 = currPoint.getDirectionsAsNonDynamicArray();
 				PathAICoordinate temp = this.maze.getCoordinateFromDirection(currPoint.getCoordinate(), temp1[0]);
 				
-				print("currently moving to :" + lastDir.toString());
+				print("currently moving to :" + lastDir.toString() + "| (" + currPoint.getCoordinate().getLat() + "," + currPoint.getCoordinate().getLong() + ") | " + currPoint.getDirections().toString());
 				//update lastDir, and add currPoint to currPath;
 				lastDir = temp1[0];
 				currPath.add(currPoint);
@@ -55,7 +62,10 @@ public class PathAISplit extends SwiftyJava{
 			}else if(currPoint.getCoordinate() == endPoint){
 				//if it gets here, then that means that currPoint is endPoint, so we want to
 				//add endPoint to the array and break 
+				print("made it");
+				
 				currPath.add(new PathAIPair(endPoint, endPoint.getIntersectionDirections()));
+				allSuccessfulPaths.add(currPath);
 				didReachEnd = true;
 				break;
 			}
@@ -67,12 +77,43 @@ public class PathAISplit extends SwiftyJava{
 			//check to see if the reason it didn't end is because it hit another intersection
 			if(currPoint.getDirections().size() > 2) {
 				print("reached an intersection");
+				
+				//remove the lastDir from the coordinates directions
+				currPoint.deleteDirection(this.getOppositeDirection(lastDir));
+				
+				//when we reach an intersection, create all new PathAISplit 
+				//objects for the intersection's directions, but we want to check
+				//the directions against maze's getCoordinateFromDirection to make
+				//sure we don't go around in circles forever
+				for(PathAIDirections dir : currPoint.getDirectionsAsNonDynamicArray()) {
+					
+					PathAICoordinate tempCoordinate = maze.getCoordinateFromDirection(currPoint.getCoordinate(), dir);
+					
+					if(!maze.pointsAlreadyReached.contains(tempCoordinate)) {
+						//DEBUG
+						print("(" + tempCoordinate.getLat() + "," + tempCoordinate.getLong() + ") has NOT been visited");
+						//DEBUG
+					
+						//create new PathAISplit instance
+						PathAISplit currSplitInstance = new PathAISplit(new PathAIPair(tempCoordinate, tempCoordinate.getIntersectionDirections()), dir, endPoint);
+						for(int i = 0; i < currSplitInstance.getAllSuccessfulPaths().size(); i++) {
+							currPath.addAll(currSplitInstance.getAllSuccessfulPaths().get(i));
+							allSuccessfulPaths.add(currPath);
+						}
+					
+					}
+				}
+				
 			}else{
 				print("reached dead end");
 			}
 		}else{
 			//if we did reach the end, that add the path to the allSuccessfulPaths array
-			allSuccessfulPaths.add(currPath);
+			
+			
+			//DEBUG
+			printArrayList(currPath);
+			//DEBUG
 		}
 	}
 	
@@ -98,4 +139,28 @@ public class PathAISplit extends SwiftyJava{
 		//requires a return method even though the method will never reach here
 		return PathAIDirections.North;
 	}
+	
+	
+	
+	//DEBUG
+	//public void printArrayList(ArrayList<PathAICoordinate> arr) {
+	public void printArrayList(ArrayList<PathAIPair> arr) {
+		String temp = "";
+		for(int i = 0; i < arr.size(); i++) {
+			temp += "(" + arr.get(i).getCoordinate().getLat() + "," + arr.get(i).getCoordinate().getLong() + ")";
+		}
+		
+		print(temp);
+	}
+	
+	public void printArrayCoordinateList(ArrayList<PathAICoordinate> arr) {
+		String temp = "";
+		for(int i = 0; i < arr.size(); i++) {
+			temp += "(" + arr.get(i).getLat() + "," + arr.get(i).getLong() + ")";
+		}
+		
+		print(temp);
+	}
+	
+	
 }
