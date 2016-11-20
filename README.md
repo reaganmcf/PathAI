@@ -1,6 +1,6 @@
 # PathAI
 
-A interesting and fast approach to solving mazes with Java.
+An interesting and fast approach to solving mazes with Java.
 
 ## How the AI Works
 The way the AI works is in the following steps
