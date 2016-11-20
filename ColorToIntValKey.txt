@@ -1,4 +1,4 @@
-0 = .Wall = Wall of the maze
-1 = .Walkable = Open Space
-2 = .StartingPosition = Start position
-3 = .EndingPosition = End Position
+0 = .Wall = Wall of the maze (BLACK | 0,0,0)
+1 = .Walkable = Open Space (WHITE | 255,255,255)
+2 = .StartingPosition = Start position (YELLOW | 255,255,0)
+3 = .EndingPosition = End Position (CYAN | 0,255,255)
