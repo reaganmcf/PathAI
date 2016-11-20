@@ -36,7 +36,8 @@ public class PathAISplit extends SwiftyJava{
 			if(!maze.pointsAlreadyReached.contains(currPoint)) {
 				maze.pointsAlreadyReached.add(currPoint);
 			}
-			printArrayList(maze.pointsAlreadyReached);
+			
+			//DEBUG printArrayList(maze.pointsAlreadyReached);
 			
 			if(currPoint.getCoordinate() != endPoint && currPoint.getDirections().size() > 1) {
 				//make sure to delete the direction that we just came from
@@ -63,7 +64,6 @@ public class PathAISplit extends SwiftyJava{
 				//if it gets here, then that means that currPoint is endPoint, so we want to
 				//add endPoint to the array and break 
 				print("made it");
-				
 				currPath.add(new PathAIPair(endPoint, endPoint.getIntersectionDirections()));
 				allSuccessfulPaths.add(currPath);
 				didReachEnd = true;
@@ -93,14 +93,34 @@ public class PathAISplit extends SwiftyJava{
 						//DEBUG
 						print("(" + tempCoordinate.getLat() + "," + tempCoordinate.getLong() + ") has NOT been visited");
 						//DEBUG
-					
+
 						//create new PathAISplit instance
 						PathAISplit currSplitInstance = new PathAISplit(new PathAIPair(tempCoordinate, tempCoordinate.getIntersectionDirections()), dir, endPoint);
 						for(int i = 0; i < currSplitInstance.getAllSuccessfulPaths().size(); i++) {
-							currPath.addAll(currSplitInstance.getAllSuccessfulPaths().get(i));
-							allSuccessfulPaths.add(currPath);
+							//DEBUG
+							print("THIS IS NEW");
+							printArrayList(currSplitInstance.getAllSuccessfulPaths().get(0));
+							
+							currPath.add(currPoint);
+							ArrayList<PathAIPair> tempCurrPath = new ArrayList<PathAIPair>();
+							tempCurrPath = (ArrayList<PathAIPair>) currPath.clone();
+							
+							print("currPath");
+							printArrayList(currPath);
+							
+							tempCurrPath.addAll(currSplitInstance.getAllSuccessfulPaths().get(i));
+							allSuccessfulPaths.add(tempCurrPath);
+							
+							print("after tempCurrPath; currPath");
+							printArrayList(currPath);
 						}
 					
+						//DEBUG
+						for(int j = 0; j < allSuccessfulPaths.size(); j++) {
+							print("new");
+							printArrayList(allSuccessfulPaths.get(j));
+						}
+						
 					}
 				}
 				
