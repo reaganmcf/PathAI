@@ -18,7 +18,7 @@ The worker is what we reference each instance created by the AI. Every time the 
 For each of these results, one of the following happen.
 
 * If the worker hits a dead end, then nothing happens. 
-* If the finds the end point, it tells the original instance the path it found. 
+* If the worker finds the end point, it tells the original instance the path it found. 
 * If it runs into another intersection, it creates new workers for each direction it can go.
 
 All of the workers send their data (in form of array's storing the path they took) to their parent instances, and the parent instances to the PathAI class if they have reached an endpoint. If they have, then print them all.
