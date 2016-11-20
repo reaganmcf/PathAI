@@ -113,7 +113,7 @@ public class PathAI extends SwiftyJava {
 				//split for each direction
 				for(PathAIDirections dir :	currentPoint.getDirectionsAsNonDynamicArray()) {
 					//DEBUG
-					print("Dir passed in : " + dir.toString());
+					//print("Dir passed in : " + dir.toString());
 					//DEBUG
 					
 					//create a new PathAISplit instance (and temp to make code easier to read)
@@ -121,8 +121,8 @@ public class PathAI extends SwiftyJava {
 					PathAISplit currSplitInstance = new PathAISplit(new PathAIPair(temp, temp.getIntersectionDirections()), dir, endPoint);
 					
 					//DEBUG
-					printArrayArrayList(currSplitInstance.getAllSuccessfulPaths());
-					print("---------");
+					//printArrayArrayList(currSplitInstance.getAllSuccessfulPaths());
+					//print("---------");
 					//DEBUG
 					
 					//if the instance reached the end of the maze, create a new PathAISuccessfulPath, and 
@@ -164,6 +164,7 @@ public class PathAI extends SwiftyJava {
 		return this.intersectionStack.get(this.intersectionStack.size() - 1);
 	}
 	
+	/*
 	public void printArrayList(ArrayList<PathAIPair> arr) {
 		String temp = "";
 		for(int i = 0; i < arr.size(); i++) {
@@ -183,6 +184,6 @@ public class PathAI extends SwiftyJava {
 		}
 		print(temp);
 	}
-	
+	*/
 }
 	

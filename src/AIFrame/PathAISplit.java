@@ -48,7 +48,9 @@ public class PathAISplit extends SwiftyJava{
 				PathAIDirections[] temp1 = currPoint.getDirectionsAsNonDynamicArray();
 				PathAICoordinate temp = this.maze.getCoordinateFromDirection(currPoint.getCoordinate(), temp1[0]);
 				
-				print("currently moving to :" + lastDir.toString() + "| (" + currPoint.getCoordinate().getLat() + "," + currPoint.getCoordinate().getLong() + ") | " + currPoint.getDirections().toString());
+				//DEBUG
+				//print("currently moving to :" + lastDir.toString() + "| (" + currPoint.getCoordinate().getLat() + "," + currPoint.getCoordinate().getLong() + ") | " + currPoint.getDirections().toString());
+			
 				//update lastDir, and add currPoint to currPath;
 				lastDir = temp1[0];
 				currPath.add(currPoint);
@@ -63,7 +65,10 @@ public class PathAISplit extends SwiftyJava{
 			}else if(currPoint.getCoordinate() == endPoint){
 				//if it gets here, then that means that currPoint is endPoint, so we want to
 				//add endPoint to the array and break 
-				print("made it");
+				
+				//DEBUG
+				//print("made it");
+				
 				currPath.add(new PathAIPair(endPoint, endPoint.getIntersectionDirections()));
 				allSuccessfulPaths.add(currPath);
 				didReachEnd = true;
@@ -73,10 +78,12 @@ public class PathAISplit extends SwiftyJava{
 		
 		//currPoint = currPath.get(currPath.size() - 1);
 		if(!didReachEnd) {
-			print(currPoint.getCoordinate().getLat() + "," + currPoint.getCoordinate().getLong());
+			//DEBUG
+			//print(currPoint.getCoordinate().getLat() + "," + currPoint.getCoordinate().getLong());
+			
 			//check to see if the reason it didn't end is because it hit another intersection
 			if(currPoint.getDirections().size() > 2) {
-				print("reached an intersection");
+				//DEBUG print("reached an intersection");
 				
 				//remove the lastDir from the coordinates directions
 				currPoint.deleteDirection(this.getOppositeDirection(lastDir));
@@ -91,48 +98,50 @@ public class PathAISplit extends SwiftyJava{
 					
 					if(!maze.pointsAlreadyReached.contains(tempCoordinate)) {
 						//DEBUG
-						print("(" + tempCoordinate.getLat() + "," + tempCoordinate.getLong() + ") has NOT been visited");
+						//print("(" + tempCoordinate.getLat() + "," + tempCoordinate.getLong() + ") has NOT been visited");
 						//DEBUG
 
 						//create new PathAISplit instance
 						PathAISplit currSplitInstance = new PathAISplit(new PathAIPair(tempCoordinate, tempCoordinate.getIntersectionDirections()), dir, endPoint);
 						for(int i = 0; i < currSplitInstance.getAllSuccessfulPaths().size(); i++) {
 							//DEBUG
-							print("THIS IS NEW");
-							printArrayList(currSplitInstance.getAllSuccessfulPaths().get(0));
+							//print("THIS IS NEW");
+							//printArrayList(currSplitInstance.getAllSuccessfulPaths().get(0));
 							
 							currPath.add(currPoint);
 							ArrayList<PathAIPair> tempCurrPath = new ArrayList<PathAIPair>();
 							tempCurrPath = (ArrayList<PathAIPair>) currPath.clone();
 							
-							print("currPath");
-							printArrayList(currPath);
+							//DEBUG
+							//print("currPath");
+							//printArrayList(currPath);
 							
 							tempCurrPath.addAll(currSplitInstance.getAllSuccessfulPaths().get(i));
 							allSuccessfulPaths.add(tempCurrPath);
 							
-							print("after tempCurrPath; currPath");
-							printArrayList(currPath);
+							//DEBUG
+							//print("after tempCurrPath; currPath");
+							//printArrayList(currPath);
 						}
 					
 						//DEBUG
-						for(int j = 0; j < allSuccessfulPaths.size(); j++) {
-							print("new");
-							printArrayList(allSuccessfulPaths.get(j));
-						}
+						//for(int j = 0; j < allSuccessfulPaths.size(); j++) {
+							//print("new");
+							//printArrayList(allSuccessfulPaths.get(j));
+						//}
 						
 					}
 				}
 				
 			}else{
-				print("reached dead end");
+				//print("reached dead end");
 			}
 		}else{
 			//if we did reach the end, that add the path to the allSuccessfulPaths array
 			
 			
 			//DEBUG
-			printArrayList(currPath);
+			//printArrayList(currPath);
 			//DEBUG
 		}
 	}
@@ -163,7 +172,7 @@ public class PathAISplit extends SwiftyJava{
 	
 	
 	//DEBUG
-	//public void printArrayList(ArrayList<PathAICoordinate> arr) {
+	/*
 	public void printArrayList(ArrayList<PathAIPair> arr) {
 		String temp = "";
 		for(int i = 0; i < arr.size(); i++) {
@@ -182,5 +191,5 @@ public class PathAISplit extends SwiftyJava{
 		print(temp);
 	}
 	
-	
+	*/
 }
