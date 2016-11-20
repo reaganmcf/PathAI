@@ -34,7 +34,14 @@ public class PathAI extends SwiftyJava {
 	//intersections. Note : DOES NOT INCLUDE THE INTERSECTION PathAIPair
 	ArrayList<PathAIPair> startPointToFirstIntersection = new ArrayList<PathAIPair>();
 	
+	//This is an interesting thing added in the case the user wants to know how fast the AI took to complete the maze
+	private long startTime;
+	private long totalTime;
+	
 	public PathAI(PathAIMaze maze) {
+		//set startTime
+		startTime = System.nanoTime();
+		
 		//set maze object here so we can reference it
 		this.maze = maze;
 		
@@ -42,6 +49,9 @@ public class PathAI extends SwiftyJava {
 		this.endPoint = maze.endPoint;
 		
 		startAI();
+		
+		//AI has finished, set totalTime
+		totalTime = (System.nanoTime() - startTime);
 		
 		for(PathAISuccessfulPath path : successfulPaths) {
 			frog(path.getIdentifier() + "| " +path.getPathAsString());
@@ -158,11 +168,16 @@ public class PathAI extends SwiftyJava {
 		return PathAIDirections.North;
 	}
 
+	//used to tell the user how long the AI took completing the maze
+	public double getSolvingTime() {
+		return (double) totalTime / 1000000000.0;
+	}
 	
 	//helper method
 	public PathAIPair getTopMostStackItem() {
 		return this.intersectionStack.get(this.intersectionStack.size() - 1);
 	}
+	
 	
 	/*
 	public void printArrayList(ArrayList<PathAIPair> arr) {

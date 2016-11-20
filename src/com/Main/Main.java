@@ -19,12 +19,7 @@ public class Main extends SwiftyJava{
 		maze.setMaze(testMaze());
 		PathAI pathAI = new PathAI(maze);
 		
-		
-		//frog(pathAI.startingPoint.isIntersection(pathAIMaze.startingPoint));
-		//System.out.println(pathAIMaze.startingPoint.getIntersectionDirections());
-		
-		//print(pathAIMaze.getCoordinateFromDirection(pathAIMaze.startingPoint, PathAIDirections.West).getMazeValue());
-		
+		print("PathAI solved the maze in " + pathAI.getSolvingTime());
 		
 	}
 	
