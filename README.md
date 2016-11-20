@@ -1,2 +1,2 @@
 # PathAI
-Basic Maze Path AI
+version ./
