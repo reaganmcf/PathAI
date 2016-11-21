@@ -24,11 +24,11 @@ For each of these results, one of the following happen.
 All of the workers send their data (in form of array's storing the path they took) to their parent instances, and the parent instances to the PathAI class if they have reached an endpoint. If they have, then print them all.
 
 ## Usage
-PathAI is still currently in development, but you can watch the repository for updates to see when it is finished.
 
 PathAI works through the following steps
 
 * Create ImageReaderAI Object
+* Get Maze Array From ImageReaderAI Object
 * Reference PathAIMaze Instance 
 * Call PathAIMaze's setMaze() Method
 * Create new PathAI Object
@@ -36,11 +36,17 @@ PathAI works through the following steps
 First, we want to create a new ImageReaderAI Object, passing in our maze image
 
 ```
-ImageIcon icon = new ImageIcon("mazeImage.png");
-Image image = icon.getImage();
+ImageReaderAI imageAI = new ImageReaderAI(File file);
+```
+*Note: you pass in the maze image as file* 
+
+Second, we want to get the maze array from the ImageReaderAI Object
+ 
+```
+int[][] mazeArray = imageAI.getMazeArray();
 ```
 
-Second, we want to create a reference to a PathAIMaze instance, but we can't create a new object because it is a singleton class
+Third, we want to create a reference to a PathAIMaze instance, but we can't create a new object because it is a singleton class
 
 ```
 PathAIMaze maze = PathAIMaze.getInstance( );
@@ -49,7 +55,7 @@ PathAIMaze maze = PathAIMaze.getInstance( );
 Then, we want to call the setMaze() method, passing in the image of our maze
 
 ```
-maze.setMaze(image);
+maze.setMaze(mazeArray);
 ```
 
 Finally, we want to create the PathAIObject
