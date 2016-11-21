@@ -14,11 +14,9 @@ public class Main extends SwiftyJava{
 	}
 	
 	public void go() throws IOException {
-		ImageReaderAI imgReader = new ImageReaderAI();
 		PathAIMaze maze = PathAIMaze.getInstance( );
-		maze.setMaze(testMaze());
+		maze.setMaze(new ImageReaderAI().getMazeArray());
 		PathAI pathAI = new PathAI(maze);
-		
 		print("PathAI solved the maze in " + pathAI.getSolvingTime());
 		
 	}
@@ -29,7 +27,7 @@ public class Main extends SwiftyJava{
 			{0,0,0,1,0,0,0,1,0},
 			{0,1,0,1,1,1,0,1,0},
 			{0,1,0,1,0,1,0,1,0},
-			{1,1,0,1,0,1,1,1,0},
+			{1,1,1,1,0,1,1,1,0},
 			{1,0,0,1,1,0,1,0,0},
 			{1,1,0,1,0,1,1,1,0},
 			{0,1,1,1,1,1,0,1,0},

@@ -45,6 +45,10 @@ public class ImageReaderAI extends SwiftyJava{
 		//mazeValue int is the multidimensional array
 	}
 
+	public int[][] getMazeArray() {
+		return this.mazeValue;
+	}
+	
     public void getRedGreenBlue(int x, int y, int side)
     {
     	  // Getting pixel color by position x and y 
