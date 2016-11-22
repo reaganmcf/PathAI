@@ -9,19 +9,19 @@ PathAI solves mazes by using the following steps
 * An *ArrayList* of coordinates is then printed to the console
 
 ## What is a *worker*?
-The worker is what we reference each instance created by the AI. Every time the AI runs into an intersection, it creates a new **worker** that goes to all areas until it does one of 3 things.
+A worker is the term for each instance of the *PathAISplit* class created by PathAI. Every time PathAI runs into an intersection, it creates a new worker that goes to all areas until it does one of 3 things.
 
-* Hits a dead end.
-* Runs into another intersection.
-* Finds the end point.
+* Hits a dead end
+* Runs into another intersection
+* Finds the end point
 
-For each of these results, one of the following happen.
+For each of these results, one of the following will happen:
 
-* If the worker hits a dead end, then nothing happens. 
-* If the worker finds the end point, it tells the original instance the path it found. 
-* If it runs into another intersection, it creates new workers for each direction it can go.
+* If the worker hits a dead end, then nothing happens
+* If the worker finds the end point, it tells the parent worker the path it found
+* If it runs into another intersection, it creates sub workers for each open direction
 
-All of the workers send their data (in form of array's storing the path they took) to their parent instances, and the parent instances to the PathAI class if they have reached an endpoint. If they have, then print them all.
+All of the workers send the pathway data (in form of *ArrayLists*) to their parent workers. in recursion until it reaches the origin worker.
 
 ## Usage
 
