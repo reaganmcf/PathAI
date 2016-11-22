@@ -1,12 +1,12 @@
 # PathAI
 
-An interesting and fast approach to solving mazes with Java.
+A unique approach to solving mazes in Java utilizing rudimentary artificial intelligence.
 
-## How the AI Works
-The way the AI works is in the following steps
-* Get path to first intersection
-* Send out **workers** to each direction the intersection can go to
-* Print out the path's the AI found.
+## How PathAI Works
+PathAI solves mazes by using the following steps
+* The original **worker** finds the first intersection of the maze
+* **Workers** are then sent in each available direction of the intersection, with additional instantiation of **workers** if the original statement is met
+* An *ArrayList* of coordinates is then printed to the console
 
 ## What is a *worker*?
 The worker is what we reference each instance created by the AI. Every time the AI runs into an intersection, it creates a new **worker** that goes to all areas until it does one of 3 things.
